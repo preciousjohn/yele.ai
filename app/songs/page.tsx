@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { songs } from "@/lib/songs";
 import { SongCard } from "@/components/song-card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";

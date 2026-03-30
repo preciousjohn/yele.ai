@@ -27,15 +27,17 @@ export function useHandDetection(options: UseHandDetectionOptions = {}) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
+  const onResultsRef = useRef(options.onResults);
+  onResultsRef.current = options.onResults;
+
   const initializeMediaPipe = useCallback(async () => {
     try {
       setIsLoading(true);
       setError(null);
 
       // Dynamically import MediaPipe modules
-      const [{ Hands }, { Camera }, drawingUtils] = await Promise.all([
+      const [{ Hands }, drawingUtils] = await Promise.all([
         import("@mediapipe/hands"),
-        import("@mediapipe/camera_utils"),
         import("@mediapipe/drawing_utils"),
       ]);
 
@@ -87,9 +89,9 @@ export function useHandDetection(options: UseHandDetectionOptions = {}) {
               })
             );
 
-            options.onResults?.(handResults);
+            onResultsRef.current?.(handResults);
           } else {
-            options.onResults?.([]);
+            onResultsRef.current?.([]);
           }
 
           ctx.restore();
@@ -103,7 +105,7 @@ export function useHandDetection(options: UseHandDetectionOptions = {}) {
       setError("Failed to initialize hand detection. Please refresh and try again.");
       setIsLoading(false);
     }
-  }, [options]);
+  }, []);
 
   const startDetection = useCallback(
     async (video: HTMLVideoElement, canvas: HTMLCanvasElement) => {
