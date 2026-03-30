@@ -4,6 +4,7 @@ import { HeroWaves, MobileHeroWaves, FeatureWaves, ProcessWaves, CTAWaves } from
 import { Camera, BookOpen, ListMusic, ArrowRight, Hand, Heart, Zap } from "lucide-react";
 
 export default function HomePage() {
+  console.log("[v0] HomePage rendering with new organic wave design");
   return (
     <div className="flex min-h-[calc(100vh-4rem)] flex-col">
       {/* Hero Section */}
