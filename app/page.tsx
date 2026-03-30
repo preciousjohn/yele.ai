@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { HeroWaves, FeatureWaves, CTAWaves } from "@/components/organic-waves";
+import { HeroWaves, MobileHeroWaves, FeatureWaves, ProcessWaves, CTAWaves } from "@/components/organic-waves";
 import { Camera, BookOpen, ListMusic, ArrowRight, Hand, Heart, Zap } from "lucide-react";
 
 export default function HomePage() {
@@ -35,24 +35,7 @@ export default function HomePage() {
         </div>
         {/* Mobile waves */}
         <div className="absolute bottom-0 left-0 right-0 h-48 lg:hidden">
-          <svg
-            viewBox="0 0 400 200"
-            className="h-full w-full"
-            preserveAspectRatio="xMidYMax slice"
-          >
-            <path
-              d="M0 80 Q 100 40, 200 80 Q 300 120, 400 60 L 400 200 L 0 200 Z"
-              className="fill-teal"
-            />
-            <path
-              d="M0 120 Q 100 80, 200 110 Q 300 140, 400 100 L 400 200 L 0 200 Z"
-              className="fill-primary"
-            />
-            <path
-              d="M0 160 Q 100 130, 200 150 Q 300 170, 400 140 L 400 200 L 0 200 Z"
-              className="fill-burgundy"
-            />
-          </svg>
+          <MobileHeroWaves />
         </div>
       </section>
 
@@ -144,22 +127,9 @@ export default function HomePage() {
                 ))}
               </ul>
             </div>
-            <div className="relative overflow-hidden rounded-2xl bg-card p-8 sm:p-12">
-              <div className="relative z-10 aspect-[4/3]">
-                <svg
-                  viewBox="0 0 400 300"
-                  className="h-full w-full"
-                  preserveAspectRatio="xMidYMid meet"
-                >
-                  <path
-                    d="M50 250 Q 150 180, 250 220 Q 350 260, 400 200 L 400 300 L 0 300 L 0 250 Z"
-                    className="fill-teal"
-                  />
-                  <path
-                    d="M0 280 Q 100 240, 200 260 Q 300 280, 400 240 L 400 300 L 0 300 Z"
-                    className="fill-primary"
-                  />
-                </svg>
+            <div className="relative overflow-hidden rounded-2xl bg-card">
+              <div className="aspect-[4/3]">
+                <ProcessWaves />
               </div>
             </div>
           </div>
