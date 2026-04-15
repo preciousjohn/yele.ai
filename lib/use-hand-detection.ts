@@ -36,10 +36,12 @@ export function useHandDetection(options: UseHandDetectionOptions = {}) {
       setError(null);
 
       // Dynamically import MediaPipe modules
-      const [{ Hands }, drawingUtils] = await Promise.all([
+      const [handsModule, drawingUtils] = await Promise.all([
         import("@mediapipe/hands"),
         import("@mediapipe/drawing_utils"),
       ]);
+      
+      const { Hands, HAND_CONNECTIONS } = handsModule;
 
       const hands = new Hands({
         locateFile: (file: string) =>
@@ -64,7 +66,7 @@ export function useHandDetection(options: UseHandDetectionOptions = {}) {
 
           if (results.multiHandLandmarks && results.multiHandLandmarks.length > 0) {
             for (const landmarks of results.multiHandLandmarks) {
-              drawingUtils.drawConnectors(ctx, landmarks, Hands.HAND_CONNECTIONS, {
+              drawingUtils.drawConnectors(ctx, landmarks, HAND_CONNECTIONS, {
                 color: "#F97316",
                 lineWidth: 3,
               });
